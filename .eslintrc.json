@@ -1,0 +1,38 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  // Activa todas las reglas recomendadas de eslint,react,prettier
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    // Enforces consistent naming for boolean props
+    "react/boolean-prop-naming": "error",
+    //  	Forbid "button" element without an explicit "type" attribute
+    "react/button-has-type": "warn",
+    // Enforce consistent usage of destructuring assignment of props, state, and context
+    "react/destructuring-assignment": "error",
+    // Prevent usage of unsafe lifecycle methods
+    "react/no-unsafe": "warn",
+    // Prevent definitions of unused prop types
+    "react/no-unused-prop-types": "warn",
+    // Prevent missing props validation in a React component definition
+    "react/prop-types": "error",
+    // Enforce a defaultProps definition for every prop that is not a required prop.
+    "react/require-default-props": "warn"
+  }
+}
