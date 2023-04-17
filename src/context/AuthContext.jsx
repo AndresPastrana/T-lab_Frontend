@@ -4,7 +4,8 @@ const AuthContext = createContext(1);
 // TODO:Add PropTypes
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  // We check if the user is in the Local storage else null
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <div>{children}</div>
