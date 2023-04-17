@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-
+import './login.css';
 const Login = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
@@ -36,11 +36,37 @@ const Login = () => {
     }
   };
   return (
-    <div>
+    <div className="container">
       <form onSubmit={login}>
-        <input type="email" name="email" value={email} onChange={onChange} />
-        <input type="password" name="password" value={password} onChange={onChange} />
-        <button type="submit">Login</button>
+        <div className="titule_container">
+          <h1>Hey, hello 👋 </h1>
+          <p>Lorem ipsum dolor sit </p>
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            className="w-100 br-5"
+            type="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Password</label>
+          <input
+            id="password"
+            className="w-100 br-5"
+            type="password"
+            name="password"
+            value={password}
+            onChange={onChange}
+          />
+        </div>
+        <button className="br-5 w-100" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );
