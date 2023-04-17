@@ -1,8 +1,15 @@
-// Protected route
-// /tlab/system
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 const Tlab = () => {
-  return <div>Tlab</div>;
+  // TODO: consume all the user info
+  const { user } = useContext(AuthContext);
+  return (
+    <div>
+      <h1>Tlab</h1>
+      <p>{JSON.stringify(user)}</p>
+    </div>
+  );
 };
 
 export default Tlab;
