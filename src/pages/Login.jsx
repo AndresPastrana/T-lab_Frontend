@@ -1,11 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { useForm } from '../hooks/useForm';
 import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { useForm } from '../hooks/useForm';
+import { AuthService } from '../services/AuthService';
+import { decodeToken } from '../helpers/decodeToken';
 import './login.css';
 const Login = () => {
-  const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
+  const { setUser, user } = useContext(AuthContext);
+
   const [formValues, onChange] = useForm({
     email: 'ae@gmail.com',
     password: 'Andres.1215'
@@ -13,28 +15,24 @@ const Login = () => {
   const { email, password } = formValues;
   const login = async (e) => {
     e.preventDefault();
-    if (email && password) {
-      try {
-        const resp = await fetch('http://localhost:3350/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formValues)
-        });
-        const data = await resp.json();
-        const { access_token, refresh_token } = data;
-        setUser((prev) => {
-          return { ...prev, user: { access_token, refresh_token } };
-        });
-        // We save the token in localstorage
-        localStorage.setItem('tokens', JSON.stringify({ access_token, refresh_token }));
-        navigate('/tlab');
-      } catch (error) {
-        console.log(error);
-      }
+    if (!email || !password) {
+      return alert('Empty flieds');
+    }
+    try {
+      const { data } = await AuthService().post('auth/login', formValues);
+      const userData = decodeToken(data.access_token);
+      const user = { ...data, ...userData };
+      localStorage.setItem('user', JSON.stringify(user));
+      // Update the AuthContext
+      setUser(user);
+    } catch (error) {
+      console.log(error);
     }
   };
+  //  If the user is alredy login Navigate to /tlab
+  if (user) {
+    return <Navigate to="/tlab" replace={true} />;
+  }
   return (
     <div className="container">
       <form onSubmit={login}>
