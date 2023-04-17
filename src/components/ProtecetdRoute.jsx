@@ -1,17 +1,14 @@
+import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 // TODO: Define the proTypes
 // eslint-disable-next-line react/prop-types
-const ProtecetdRoute = ({ role = '', children }) => {
-  // We extract the token from local storage
-  const { access_token, refresh_token } = JSON.parse(localStorage.getItem('tokens')) || {
-    access_token: null,
-    refresh_token: null
-  };
-  //   TODO: Check the role in the accesst token
-  if (access_token && refresh_token) {
-    return <>{children}</>;
+const ProtecetdRoute = ({ children }) => {
+  const { user } = useContext(AuthContext);
+  if (!user) {
+    return <Navigate to="/" replace={true} />;
   }
-  return <Navigate to="/login" replace />;
+  return children;
 };
 
 export default ProtecetdRoute;
