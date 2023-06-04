@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ProtecetdRoute from '../components/ProtecetdRoute';
+import RedirectIfLogin from '../components/RedirectIfLogin';
 import Landing from '../pages/Landing';
 import Login from '../pages/Login';
 import Search from '../pages/Search';
@@ -21,15 +22,33 @@ import Tlab from '../pages/Tlab';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Landing />
+    element: (
+      <RedirectIfLogin redirectPath="/tlab">
+        <Landing />
+      </RedirectIfLogin>
+    )
   },
   {
     path: '/login',
-    element: <Login />
+    element: (
+      <RedirectIfLogin redirectPath="/tlab">
+        <Login />
+      </RedirectIfLogin>
+    )
   },
   {
     path: '/search',
-    element: <Search />
+    element: <Search />,
+    children: [
+      {
+        path: 'student',
+        element: <h1>STUDENT</h1>
+      },
+      {
+        path: 'teacher',
+        element: <h1>Teacher</h1>
+      }
+    ]
   },
   {
     path: '/tlab',
