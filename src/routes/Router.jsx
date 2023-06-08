@@ -1,10 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
+import PeopleList from '../components/Tlab/dashboard/PeopleList';
 import ProtecetdRoute from '../components/ProtecetdRoute';
 import RedirectIfLogin from '../components/RedirectIfLogin';
 import Landing from '../pages/Landing';
 import Login from '../pages/Login';
 import Search from '../pages/Search';
 import Tlab from '../pages/Tlab';
+import SideBar from '../shared/SideBar';
+import Courts from '../components/Tlab/dashboard/court/Courts';
 
 // Pages
 // import Auth from '../pages/Auth';
@@ -38,17 +41,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/search',
-    element: <Search />,
-    children: [
-      {
-        path: 'student',
-        element: <h1>STUDENT</h1>
-      },
-      {
-        path: 'teacher',
-        element: <h1>Teacher</h1>
-      }
-    ]
+    element: <Search />
   },
   {
     path: '/tlab',
@@ -57,6 +50,38 @@ const router = createBrowserRouter([
         <Tlab />
       </ProtecetdRoute>
     )
+  },
+  {
+    path: '/dash',
+    element: <SideBar />,
+    children: [
+      {
+        path: 'students',
+        element: <h1>Estudiantes</h1>
+      },
+      {
+        path: 'students/:id',
+        element: <PeopleList />
+      },
+      {
+        path: 'teachers',
+        element: <h1>Teachers</h1>
+      },
+      {
+        path: 'teachers/:id',
+        element: <h1>Teacher Details</h1>
+      },
+      {
+        path: 'courts',
+        element: <Courts />,
+        children: [
+          {
+            path: ':id',
+            element: <h2>Edit Court</h2>
+          }
+        ]
+      }
+    ]
   }
 ]);
 

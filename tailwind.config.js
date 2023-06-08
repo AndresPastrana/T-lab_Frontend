@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './node_modules/flowbite/**/*.js'],
   theme: {
     // Overwrite the tailwind's default styles
     screens: {
@@ -21,5 +21,6 @@ export default {
     },
     // To keep the default config of tailwind and add some more
     extend: {}
-  }
+  },
+  plugins: [require('flowbite/plugin')]
 };
