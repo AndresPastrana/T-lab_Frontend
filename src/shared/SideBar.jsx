@@ -48,7 +48,7 @@ const SideBar = () => {
         <div className="flex flex-col p-5 items-center">
           <img
             className="w-20 h-20 rounded-full mb-5"
-            src="/docs/images/people/profile-picture-5.jpg"
+            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
             alt=""
           />
           <p className="ml-0 font-medium dark:text-white">Andres Pastrana</p>{' '}
@@ -71,8 +71,26 @@ const SideBar = () => {
                 <span className="group-hover:text-white hover:font-semibold ml-3">Dashboard</span>
               </a>
             </li>
-            {/* People Dropdown*/}
             <li>
+              <Link
+                to="people"
+                className="group flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-green-600  dark:hover:bg-gray-700">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-white dark:text-gray-400 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    fillRule="evenodd"
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                    clipRule="evenodd"></path>
+                </svg>
+                <span className="group-hover:text-white hover:font-semibold ml-3">People</span>
+              </Link>
+            </li>
+            {/* People Dropdown*/}
+            {/* <li>
               <button
                 type="button"
                 className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-green-600 dark:text-white dark:hover:bg-gray-700"
@@ -123,7 +141,7 @@ const SideBar = () => {
                   </Link>
                 </li>
               </ul>
-            </li>
+            </li> */}
 
             <li>
               <Link
