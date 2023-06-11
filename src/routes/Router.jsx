@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom';
-import PeopleList from '../components/Tlab/dashboard/PeopleList';
 import ProtecetdRoute from '../components/ProtecetdRoute';
 import RedirectIfLogin from '../components/RedirectIfLogin';
 import Landing from '../pages/Landing';
@@ -7,6 +6,7 @@ import Login from '../pages/Login';
 import Search from '../pages/Search';
 import Tlab from '../pages/Tlab';
 import SideBar from '../shared/SideBar';
+import PeopleList from '../components/Tlab/dashboard/people/PeopleList';
 import Courts from '../components/Tlab/dashboard/court/Courts';
 
 // Pages
@@ -56,20 +56,12 @@ const router = createBrowserRouter([
     element: <SideBar />,
     children: [
       {
-        path: 'students',
-        element: <h1>Estudiantes</h1>
-      },
-      {
-        path: 'students/:id',
+        path: 'people',
         element: <PeopleList />
       },
       {
-        path: 'teachers',
-        element: <h1>Teachers</h1>
-      },
-      {
-        path: 'teachers/:id',
-        element: <h1>Teacher Details</h1>
+        path: 'people:id',
+        element: <h1>Student info</h1>
       },
       {
         path: 'courts',
